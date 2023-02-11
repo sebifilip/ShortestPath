@@ -19,10 +19,7 @@ def prompt_user(cities: dict[list[(str, str)], int]):
     destination = random.choice(list(cities))
     while start == destination:
         destination = random.choice(list(cities))
-    shortest_path = sqrt(abs(cities[start][0]^2) + abs(cities[start[1]^2])) + sqrt(abs(cities[destination][0]^2) + abs(cities[destination[1]^2]))
     shortest_input = int(input(f"Find the shortest path between {start} and {destination}: "))
-    if shortest_input == shortest_path:
-        print("Correct!")
 
 
 print(load_data("cities_coords.txt"))
