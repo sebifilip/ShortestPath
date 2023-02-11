@@ -1,31 +1,18 @@
 import random
 
 
-class CityGraph():
-
-    def __init__(selfself, codess):
-        self.vertices = vertices
-        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
-
-    def
-
 def load_data(data: str):
     graph_data = {}
-    cities = []
+    i = 0
     with open(data, "r") as reader:
         for line in reader.readlines():
-            line = line.strip()
-            connection = line.split()
-            graph_data[connection[0], connection[1]] = int(connection[2])
-            graph_data[connection[1], connection[0]] = int(connection[2])
-            pair = [connection[0], connection[1]]
-            for c in pair:
-                if c not in cities:
-                    cities.append(c)
-
-    print(cities)
+            if i > 0:
+                line = line.strip()
+                connection = line.split(",")
+                graph_data[connection[0]] = (float(connection[1]), float(connection[2]))
+            i += 1
     print(graph_data)
-    gen_matrix(graph_data, cities)
+    gen_matrix(graph_data)
 
 
 def gen_matrix(graph_data: dict[list[(str, str)], int], cities: list[str]):
@@ -53,7 +40,7 @@ def prompt_user(graph_data: dict[list[(str, str)], int], cities: list[str]):
     shortest_path = int(input(f"Find the shortest path between {start} and {destination}: "))
 
 
-print(load_data("cities_graph"))
+print(load_data("cities_coords.txt"))
 
 
 # References:
