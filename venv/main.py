@@ -1,5 +1,14 @@
 import random
 
+
+class CityGraph():
+
+    def __init__(selfself, codess):
+        self.vertices = vertices
+        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
+
+    def
+
 def load_data(data: str):
     graph_data = {}
     cities = []
@@ -45,3 +54,7 @@ def prompt_user(graph_data: dict[list[(str, str)], int], cities: list[str]):
 
 
 print(load_data("cities_graph"))
+
+
+# References:
+# https://www.geeksforgeeks.org/python-program-for-dijkstras-shortest-path-algorithm-greedy-algo-7/
