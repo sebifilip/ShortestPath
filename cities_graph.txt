@@ -1,0 +1,88 @@
+Aberdeen->Edinburgh,Glasgow,Inverness
+Amsterdam->Brussels,Hague,Hamburg,London
+Andorra la Vella->Barcelona,Marseille
+Ankara->Istanbul,Nicosia,Tbilisti
+Astana->Moscow
+Athens->Skopje,Thessaloniki
+Baku->Yerevan
+Barcelona->Andorra la Vella,Madrid,Valecia
+Belfast->Douglas,Dublin,Glasgow
+Belgrade->Podgorica,Pristina,Sarajevo,Sofia,Timisoara
+Bern->Geneva,Paris,Zurich
+Berlin->Frankfurt,Hamburg,Prague,Warsaw
+Birmingham->Bristol,London,Manchester
+Bratislava->Budapest,Prague,Vienna
+Bristol->Truro
+Brussels->Amsterdam,Hague,London,Luxembourg City,Paris
+Bucharest->Cluj-Napoca,Iasi,Istanbul,Sofia
+Budapest->Bratislava,Cluj-Napoca,Timisoara,Zagreb
+Cardiff->Bristol,Swansea
+Chisinau->Iasi,Kyiv,Sevastopol
+Cluj-Napoca->Bucharest,Budapest,Iasi,Timisoara
+Copenhagen->Hamburg,Oslo,Stockholm
+Cork->Dublin
+Douglas->Belfast,Dublin,Manchester
+Dublin->Belfast,Cork,Douglas
+Edinburgh->Aberdeen,GLasgow,Manchester
+Frankfurt->Berlin,Luxembourg City,Munich
+Geneva->Bern,Lyon,Marseille,Nice
+Gibraltar->Lisbon,Valencia
+Glasgow->Aberdeen,Belfast,Edingurgh,Inverness
+Hague->Amsterdam,Brussels
+Hamburg->Amsterdam,Berlin,Copenhagen
+Helsinki->St Petersburg,Stockholm,Tallinn
+Iasi->Bucharest,Chisinau,Cluj-Napoca
+Inverness->Aberdeen,Glasgow,Oslo,Torshavn
+Istanbul->Ankara,Bucharest,Thessaloniki
+Kaliningrad->Vilnius,Warsaw
+Kyiv->Chisinau,Minsk,Moscow,Warsaw
+Lisbon->Gibraltar,Madrid
+Ljubljana->Venice,Vienna,Zagreb
+London->Amsterdam,Birmingham,Brussels,Paris
+Luxembourg City->Brussels,Frankfurt,Zurich
+Lyon->Geneva,Paris
+Madrid->Barcelona,Lisbon,Valencia
+Manchester->Birmingham,Douglas,Edinburgh
+Marseille->Andorra la Vella,Geneva,Nice
+Milan->Rome,Venice,Zurich
+Minsk->Kyiv,Moscow,Vilnius,Warsaw
+Monaco->Nice
+Moscow->Astana,Kyiv,Minsk,St Petersburg,Tbilisti
+Munich->Frankfurt,Vienna,Zurich
+Nice->Geneva,Marseille,Monaco
+Nicosia->Ankara
+Nuuk->Reyjkavik
+Oslo->Copenhagen,Inverness,Stockholm,Torshavn
+Paris->Bern,Brussels,London,Lyon
+Podgorica->Belgrade,Sarajevo,Tirana
+Prague->Berlin,Bratislava
+Pristina->Belgrade,Skopje
+Reykjavik->Nuuk,Torshavn
+Riga->Tallinn,Vilnius
+Rome->Milan,Valetta,Vatican City
+San Marino->Venice
+Sarajevo->Belgrade,Podgorica,Zagreb
+Sevastopol-Chisinau
+Skopje->Athens,Belgrade,Bucharest,Thessaloniki,Tirana
+Sofia->Belgrade,Bucharest,Skopje
+Stockholm->Copenhagen,Helsinki,Oslo
+St Petersburg->Helsinki,Moscow
+Swansea->Cardiff
+Tallinn->Helsinki,Riga
+Tbilisti->Ankara,Moscow,Yerevan
+Thessaloniki->Athens,Istanbul,Skopje
+Timisoara->Belgrade,Budapest,Cluj-Napoca
+Tirana->Podgorica,Skopje
+Torshavn->Inverness,Oslo,Reykjavik
+Truro->Bristol
+Vaduz->Zurich
+Valencia->Barcelona,Gibraltar,Madrid
+Valetta->Rome
+Vatican City->Rome
+Venice->Ljubljana,Milan,San Marino
+Vienna->Bratislava,Ljubljana,Munich
+Vilnius->Kaliningrad,Minsk,Riga
+Warsaw->Berlin,Kaliningrad,Kyiv
+Yerevan->Baku,Tbilisti
+Zagreb->Budapest,Ljubljana,Sarajevo
+Zurich->Geneva,Liechtenstein,Luxembourg City,Milan,Munich
