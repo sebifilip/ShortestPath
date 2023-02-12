@@ -7,13 +7,17 @@ def load_coordinates(coord_file: str) -> list[(float, float)]:
     with open(coord_file, "r") as reader:
         for line in reader.readlines():
             line = line.strip()
-            connection = line.split(",")
-            result.append((float(connection[1]), float(connection[2])))
+            coordinate = line.split(",")
+            result.append((float(coordinate[1]), float(coordinate[2])))
     return result
 
 
-def load_graph():
-    pass
+def load_graph(graph_file: str) -> dict(str, (str, str)):
+    result: dict[str, (str, str)] = {}
+    with open(graph_file, "r") as reader:
+        for line in reader.readlines():
+            line = line.strip()
+
 
 
 if __name__ == "__main__":
