@@ -62,7 +62,7 @@ Riga->Tallinn,Vilnius
 Rome->Milan,Valetta,Vatican City
 San Marino->Venice
 Sarajevo->Belgrade,Podgorica,Zagreb
-Sevastopol-Chisinau
+Sevastopol->Chisinau
 Skopje->Athens,Belgrade,Bucharest,Thessaloniki,Tirana
 Sofia->Belgrade,Bucharest,Skopje
 Stockholm->Copenhagen,Helsinki,Oslo

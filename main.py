@@ -8,16 +8,23 @@ def load_coordinates(coord_file: str) -> list[(float, float)]:
         for line in reader.readlines():
             line = line.strip()
             coordinate = line.split(",")
-            result.append((float(coordinate[1]), float(coordinate[2])))
+            result.append((float(coordinate[0]), float(coordinate[1])))
     return result
 
 
-def load_graph(graph_file: str) -> dict(str, (str, str)):
-    result: dict[str, (str, str)] = {}
+def load_graph(graph_file: str) -> dict[str, list[str]]:
+    result: dict[str, list[str]] = {}
     with open(graph_file, "r") as reader:
         for line in reader.readlines():
             line = line.strip()
+            connection = line.split("->")
+            edges = connection[1].split(",")
+            result[connection[0]] = edges
+    return result
 
+
+print(load_coordinates("cities_coords.txt"))
+print(load_graph("cities_graph.txt"))
 
 
 if __name__ == "__main__":
