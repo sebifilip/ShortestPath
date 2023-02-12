@@ -3,24 +3,20 @@ from time import time
 
 
 def load_data(data: str):
-    graph_data = {}
+    cities_data = {}
     i = 0
     with open(data, "r") as reader:
         for line in reader.readlines():
             if i > 0:
                 line = line.strip()
                 connection = line.split(",")
-                graph_data[connection[0]] = (float(connection[1]), float(connection[2]))
+                cities_data[connection[0]] = (float(connection[1]), float(connection[2]))
             i += 1
-    return graph_data
+    return cities_data
 
 
-def prompt_user(cities: dict[str, (float, float)]):
+def prompt_user(cities: dict[str, (float, float)], start, destination):
     while True:
-        start = random.choice(list(cities))
-        destination = random.choice(list(cities))
-        while start == destination:
-            destination = random.choice(list(cities))
         start_x = float(input(f"Please enter the x coordinate for {start}: "))
         start_y = float(input(f"Please enter the y coordinate for {start}: "))
         end_x = float(input(f"Please enter the x coordinate for {destination}: "))
@@ -35,25 +31,20 @@ def prompt_user(cities: dict[str, (float, float)]):
             print("Incorrect cooridnates!")
 
 
-def test_run():
-    t1 = time()
-    print(load_data("cities_coords.txt"))
-    t2 = time()
-    prompt_user(load_data("cities_coords.txt"))
-    print(f"Time taken to open the file and get the shortest path between two cities is {t2 - t1} seconds")
+def test_run(start, end):
+    start_time = time()
+    cities_dict = load_data("cities_coords.txt")
+    print(cities_dict)
+    prompt_user(cities_dict, start, end)
+    end_time = time()
+    elapsed = end_time - start_time
+    print(f"Elapsed time: {elapsed} seconds")
 
 
 if __name__ == "__main__":
-    test_run()
-
-
-print(load_data("cities_coords.txt"))
-start_time = time()
-prompt_user(load_data("cities_coords.txt"))
-end_time = time()
-elapsed = end_time - start_time
-print(f"Elapsed time: {elapsed} seconds")
+    test_run("Bucharest", "Zurich")
+    test_run("London", "Astana")
 
 
 # References:
-# https://www.geeksforgeeks.org/python-program-for-dijkstras-shortest-path-algorithm-greedy-algo-7/
+# Lect%2002.pdf
