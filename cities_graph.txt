@@ -5,7 +5,7 @@ Ankara->Istanbul,Nicosia,Tbilisti
 Astana->Moscow
 Athens->Skopje,Thessaloniki
 Baku->Yerevan
-Barcelona->Andorra la Vella,Madrid,Valecia
+Barcelona->Andorra la Vella,Madrid,Valencia
 Belfast->Douglas,Dublin,Glasgow
 Belgrade->Podgorica,Pristina,Sarajevo,Sofia,Timisoara
 Bern->Geneva,Paris,Zurich
@@ -23,11 +23,11 @@ Copenhagen->Hamburg,Oslo,Stockholm
 Cork->Dublin
 Douglas->Belfast,Dublin,Manchester
 Dublin->Belfast,Cork,Douglas
-Edinburgh->Aberdeen,GLasgow,Manchester
+Edinburgh->Aberdeen,Glasgow,Manchester
 Frankfurt->Berlin,Luxembourg City,Munich
 Geneva->Bern,Lyon,Marseille,Nice
 Gibraltar->Lisbon,Valencia
-Glasgow->Aberdeen,Belfast,Edingurgh,Inverness
+Glasgow->Aberdeen,Belfast,Edinburgh,Inverness
 Hague->Amsterdam,Brussels
 Hamburg->Amsterdam,Berlin,Copenhagen
 Helsinki->St Petersburg,Stockholm,Tallinn
@@ -51,7 +51,7 @@ Moscow->Astana,Kyiv,Minsk,St Petersburg,Tbilisti
 Munich->Frankfurt,Vienna,Zurich
 Nice->Geneva,Marseille,Monaco
 Nicosia->Ankara
-Nuuk->Reyjkavik
+Nuuk->Reykjavik
 Oslo->Copenhagen,Inverness,Stockholm,Torshavn
 Paris->Bern,Brussels,London,Lyon
 Podgorica->Belgrade,Sarajevo,Tirana
@@ -85,4 +85,4 @@ Vilnius->Kaliningrad,Minsk,Riga
 Warsaw->Berlin,Kaliningrad,Kyiv
 Yerevan->Baku,Tbilisti
 Zagreb->Budapest,Ljubljana,Sarajevo
-Zurich->Geneva,Liechtenstein,Luxembourg City,Milan,Munich
+Zurich->Geneva,Vaduz,Luxembourg City,Milan,Munich
