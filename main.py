@@ -38,9 +38,9 @@ def load_distances(c: str, g: str) -> dict[(str, str), float]:
     return distances
 
 
-def visit():
+def visit(edges_num: int):
     global visited_and_distance
-    v = -10
+    v = -edges_num
     for i in range(len(vertices)):
         if visited_and_distance[i][0] == 0 and (v < 0 or visited_and_distance[i][1] <= visited_and_distance[v][1]):
             v = i
@@ -85,8 +85,8 @@ for i in range(num_of_vertices - 1):
     visited_and_distance.append([0, sys.maxsize])
 
 for vertex in range(0, num_of_vertices):
-    to_visit = visit()
-    for neighbour in range(num_of_vertices):
+    to_visit = visit(len(graph_dict))
+    for neighbour in range(0, num_of_vertices):
         if vertices[to_visit][neighbour] == 1 and visited_and_distance[neighbour][0] == 0:
             new_distance = visited_and_distance[to_visit][1] + edges[to_visit][neighbour]
             if visited_and_distance[neighbour][1] > new_distance:
@@ -97,10 +97,10 @@ for vertex in range(0, num_of_vertices):
 i = 0
 
 # Printing the distance
-for distance in visited_and_distance:
-    print("Distance of ", chr(ord('a') + i),
-          " from source vertex: ", distance[1])
-    i = i + 1
+# print(visited_and_distance)
+# for distance in visited_and_distance:
+#     print("Distance of from source vertex: ", distance[1])
+#     i = i + 1
 
 print(load_distances("cities_coords.txt", "cities_graph.txt"))
 
