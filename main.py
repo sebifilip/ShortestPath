@@ -94,8 +94,6 @@ for vertex in range(0, num_of_vertices):
 
         visited_and_distance[to_visit][0] = 1
 
-i = 0
-
 # Printing the distance
 # print(visited_and_distance)
 # for distance in visited_and_distance:
