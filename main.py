@@ -1,13 +1,11 @@
-from time import time
-import sys
+import time
 
 
 def load_coordinates(coord_file: str) -> list[(float, float)]:
     result: list[(float, float)] = []
     with open(coord_file, "r") as reader:
         for line in reader.readlines():
-            line = line.strip()
-            coordinate = line.split(",")
+            coordinate = line.strip().split(",")
             result.append((float(coordinate[0]), float(coordinate[1])))
     return result
 
@@ -16,8 +14,7 @@ def load_graph(graph_file: str) -> list[(str, list[str])]:
     result: list[(str, list[str])] = []
     with open(graph_file, "r") as reader:
         for line in reader.readlines():
-            s_line: str = line.strip()
-            connection = s_line.split("->")
+            connection = line.strip().split("->")
             edge_list: list[str] = connection[1].split(",")
             result.append((connection[0], edge_list))
     return result
@@ -48,15 +45,14 @@ def load_vertices(graph_file: str) -> list[str]:
 
 
 def find_shortest_path(start: str) -> (dict[str, str], dict[str, float]):
-    global current_node, current_index
+    global current_node, current_index, neighbours
     edges_dict: dict[(str, str), float] = load_edges("cities_coords.txt", "cities_graph.txt")
     graph: list[(str, list[str])] = load_graph("cities_graph.txt")
     unvisited = [c for c, _ in graph]
     shortest_path: dict[str, float] = {}
     prev_cities: dict[str, str] = {}
-    max_val = sys.maxsize
     for node in unvisited:
-        shortest_path[node] = max_val
+        shortest_path[node] = float("inf")
     shortest_path[start] = 0
     while unvisited:
         current_node = None
@@ -85,19 +81,29 @@ def print_result(prev_cities: dict[str, str], shortest_path: dict[str, float], s
         path.append(node)
         node = prev_cities[node]
     path.append(start_node)
-    print("We found the following best path with a value of {}.".format(shortest_path[target_node]))
+    print(f"The shortest distance found is {shortest_path[target_node]}km")
     print(" -> ".join(reversed(path)))
 
 
 def run():
-    prev_cities, shortest_path = find_shortest_path("Ankara")
-    print_result(prev_cities, shortest_path, "Ankara", "Moscow")
+    while True:
+        vertices = load_vertices("cities_graph.txt")
+        while True:
+            start: str = input("Please enter a city name to start: ")
+            destination: str = input("Please enter a destination city: ")
+            if start not in vertices or destination not in vertices:
+                print("Cities not found")
+            else:
+                break
+        t1 = time.time()
+        prev_cities, shortest_path = find_shortest_path(start)
+        print_result(prev_cities, shortest_path, start, destination)
+        t2 = time.time()
+        print(f"Time elapsed: {t2 - t1} seconds")
 
-
-run()
 
 if __name__ == "__main__":
-    pass
+    run()
 
 # References:
 # https://www.udacity.com/blog/2021/10/implementing-dijkstras-algorithm-in-python.html
