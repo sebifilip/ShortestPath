@@ -66,9 +66,9 @@ def find_shortest_path(start: str) -> (dict[str, str], dict[str, float]):
                 neighbours = es
                 break
         for neighbour in neighbours:
-            tentative = shortest_path[current_node] + edges_dict[(current_node, neighbour)]
-            if tentative < shortest_path[neighbour]:
-                shortest_path[neighbour] = tentative
+            next_node = shortest_path[current_node] + edges_dict[(current_node, neighbour)]
+            if next_node < shortest_path[neighbour]:
+                shortest_path[neighbour] = next_node
                 prev_cities[neighbour] = current_node
         unvisited.remove(current_node)
     return prev_cities, shortest_path
