@@ -12,99 +12,79 @@ def load_coordinates(coord_file: str) -> list[(float, float)]:
     return result
 
 
-def load_graph(graph_file: str) -> dict[str, list[str]]:
-    result: dict[str, list[str]] = {}
+def load_graph(graph_file: str) -> list[(str, list[str])]:
+    result: list[(str, list[str])] = []
     with open(graph_file, "r") as reader:
         for line in reader.readlines():
-            line = line.strip()
-            connection = line.split("->")
-            edges = connection[1].split(",")
-            result[connection[0]] = edges
+            s_line: str = line.strip()
+            connection = s_line.split("->")
+            edge_list: list[str] = connection[1].split(",")
+            result.append((connection[0], edge_list))
     return result
 
 
-def load_distances(c: str, g: str) -> dict[(str, str), float]:
-    coords: list[(float, float)] = load_coordinates(c)
-    graph: dict[str, list[str]] = load_graph(g)
+def load_edges(coord_file: str, graph_file: str) -> dict[(str, str), float]:
+    coords: list[(float, float)] = load_coordinates(coord_file)
+    graph: list[(str, list[str])] = load_graph(graph_file)
     cities_coords: dict[str, (float, float)] = {}
     distances: dict[(str, str), float] = {}
     for i in range(0, len(coords)):
-        cities_coords[list(graph)[i]] = coords[i]
-    for c1 in graph:
-        for c2 in graph[c1]:
-            distances[(c1, c2)] = 0
-    for (c1, c2) in distances:
-        distances[(c1, c2)] = ((cities_coords[c1][0] - cities_coords[c2][0])**2 + (cities_coords[c1][1] - cities_coords[c2][1])**2)**0.5
+        cities_coords[graph[i][0]] = coords[i]
+    for city1, edge_list in graph:
+        for city2 in edge_list:
+            distances[(city1, city2)] = 0
+    for (city1, city2) in distances:
+        distances[(city1, city2)] = ((cities_coords[city1][0] - cities_coords[city2][0]) ** 2 +
+                                     (cities_coords[city1][1] - cities_coords[city2][1]) ** 2) ** 0.5
     return distances
 
 
-def visit(edges_num: int):
-    global visited_and_distance
-    v = -edges_num
-    for i in range(len(vertices)):
-        if visited_and_distance[i][0] == 0 and (v < 0 or visited_and_distance[i][1] <= visited_and_distance[v][1]):
-            v = i
-    return v
+def load_vertices(graph_file: str) -> list[str]:
+    vertex_list: list[str] = []
+    graph: list[(str, list[str])] = load_graph(graph_file)
+    for city1 in graph:
+        vertex_list.append(city1[0])
+    return vertex_list
 
 
-edges_dict: dict[(str, str), float] = load_distances("cities_coords.txt", "cities_graph.txt")
-graph_dict: dict[str, list[str]] = load_graph("cities_graph.txt")
+def find_shortest_path(start, end):
+    global current_node, current_index
+    edges_dict: dict[(str, str), float] = load_edges("cities_coords.txt", "cities_graph.txt")
+    graph: list[(str, list[str])] = load_graph("cities_graph.txt")
+    unvisited = [c for c, _ in graph]
+    shortest_path = {}
+    prev_cities = {}
+    max_val = sys.maxsize
+    for city in unvisited:
+        shortest_path[city] = max_val
+    shortest_path[start] = 0
+    while unvisited:
+        current_node = None
+        for node in unvisited:
+            if current_node is None:
+                current_node = node
+            elif shortest_path[node] < shortest_path[current_node]:
+                current_node = node
+    for i in range(0, len(graph)):
+        if graph[i][0] == current_node:
+            current_index = i
+    neighbours = graph[current_index][1]
+    for n in neighbours:
+        tentative = shortest_path[current_node] + edges_dict[(current_node, n)]
+        if tentative < shortest_path[n]:
+            shortest_path[n] = tentative
+            prev_cities[n] = current_node
+    unvisited.remove(current_node)
+    return prev_cities, shortest_path
 
-# creating vertices
-vertices: list[list[int]] = []
-for city in graph_dict:
-    vertices.append([])
-for i in range(0, len(vertices)):
-    v1 = list(graph_dict)[i]
-    for j in range(0, len(vertices)):
-        v2 = list(graph_dict)[j]
-        if (v1, v2) in edges_dict:
-            vertices[i].append(1)
-        else:
-            vertices[i].append(0)
-print(vertices)
-
-# creating edges
-edges: list[list[float]] = []
-for city in graph_dict:
-    edges.append([])
-for i in range(0, len(edges)):
-    v1 = list(graph_dict)[i]
-    for j in range(0, len(edges)):
-        v2 = list(graph_dict)[j]
-        if (v1, v2) in edges_dict:
-            edges[i].append(edges_dict[(v1, v2)])
-        else:
-            edges[i].append(0)
-print(edges)
-
-num_of_vertices = len(vertices[0])
-
-visited_and_distance: list[list[int]] = [[0, 0]]
-for i in range(num_of_vertices - 1):
-    visited_and_distance.append([0, sys.maxsize])
-
-for vertex in range(0, num_of_vertices):
-    to_visit = visit(len(graph_dict))
-    for neighbour in range(0, num_of_vertices):
-        if vertices[to_visit][neighbour] == 1 and visited_and_distance[neighbour][0] == 0:
-            new_distance = visited_and_distance[to_visit][1] + edges[to_visit][neighbour]
-            if visited_and_distance[neighbour][1] > new_distance:
-                visited_and_distance[neighbour][1] = new_distance
-
-        visited_and_distance[to_visit][0] = 1
-
-# Printing the distance
-# print(visited_and_distance)
-# for distance in visited_and_distance:
-#     print("Distance of from source vertex: ", distance[1])
-#     i = i + 1
-
-print(load_distances("cities_coords.txt", "cities_graph.txt"))
-
+def run():
+    start = input("Please enter a city to start: ")
+    destination = input("Please enter a destination:")
+    print(find_shortest_path(start, destination))
 
 if __name__ == "__main__":
     pass
 
 # References:
 # https://www.programiz.com/dsa/dijkstra-algorithm
+# https://www.udacity.com/blog/2021/10/implementing-dijkstras-algorithm-in-python.html
