@@ -1,3 +1,4 @@
+import sys
 import time
 
 
@@ -52,7 +53,7 @@ def find_shortest_path(start: str) -> (dict[str, str], dict[str, float]):
     shortest_path: dict[str, float] = {}
     prev_cities: dict[str, str] = {}
     for node in unvisited:
-        shortest_path[node] = float("inf")
+        shortest_path[node] = sys.maxsize
     shortest_path[start] = 0
     while unvisited:
         current_node = None
