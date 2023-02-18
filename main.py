@@ -47,16 +47,16 @@ def load_vertices(graph_file: str) -> list[str]:
     return vertex_list
 
 
-def find_shortest_path(start, end):
+def find_shortest_path(start: str) -> (dict[str, str], dict[str, float]):
     global current_node, current_index
     edges_dict: dict[(str, str), float] = load_edges("cities_coords.txt", "cities_graph.txt")
     graph: list[(str, list[str])] = load_graph("cities_graph.txt")
     unvisited = [c for c, _ in graph]
-    shortest_path = {}
-    prev_cities = {}
+    shortest_path: dict[str, float] = {}
+    prev_cities: dict[str, str] = {}
     max_val = sys.maxsize
-    for city in unvisited:
-        shortest_path[city] = max_val
+    for node in unvisited:
+        shortest_path[node] = max_val
     shortest_path[start] = 0
     while unvisited:
         current_node = None
@@ -65,26 +65,39 @@ def find_shortest_path(start, end):
                 current_node = node
             elif shortest_path[node] < shortest_path[current_node]:
                 current_node = node
-    for i in range(0, len(graph)):
-        if graph[i][0] == current_node:
-            current_index = i
-    neighbours = graph[current_index][1]
-    for n in neighbours:
-        tentative = shortest_path[current_node] + edges_dict[(current_node, n)]
-        if tentative < shortest_path[n]:
-            shortest_path[n] = tentative
-            prev_cities[n] = current_node
-    unvisited.remove(current_node)
+        for c, es in graph:
+            if c == current_node:
+                neighbours = es
+                break
+        for neighbour in neighbours:
+            tentative = shortest_path[current_node] + edges_dict[(current_node, neighbour)]
+            if tentative < shortest_path[neighbour]:
+                shortest_path[neighbour] = tentative
+                prev_cities[neighbour] = current_node
+        unvisited.remove(current_node)
     return prev_cities, shortest_path
 
+
+def print_result(prev_cities: dict[str, str], shortest_path: dict[str, float], start_node: str, target_node: str):
+    path: list[str] = []
+    node: str = target_node
+    while node != start_node:
+        path.append(node)
+        node = prev_cities[node]
+    path.append(start_node)
+    print("We found the following best path with a value of {}.".format(shortest_path[target_node]))
+    print(" -> ".join(reversed(path)))
+
+
 def run():
-    start = input("Please enter a city to start: ")
-    destination = input("Please enter a destination:")
-    print(find_shortest_path(start, destination))
+    prev_cities, shortest_path = find_shortest_path("Ankara")
+    print_result(prev_cities, shortest_path, "Ankara", "Moscow")
+
+
+run()
 
 if __name__ == "__main__":
     pass
 
 # References:
-# https://www.programiz.com/dsa/dijkstra-algorithm
 # https://www.udacity.com/blog/2021/10/implementing-dijkstras-algorithm-in-python.html
